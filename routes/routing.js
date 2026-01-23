@@ -10,6 +10,12 @@ router.get('/recipes',recipeController.getAllRecipesController)
 router.post('/register',userController.registerController)
 // login
 router.post('/login',userController.loginController)
+// view recipe
+router.get('/recipes/:id',recipeController.viewRecipesController)
+// get related recipe
+router.get('/related-recipes',recipeController.relatedRecipesController)
+
+
 
 
 

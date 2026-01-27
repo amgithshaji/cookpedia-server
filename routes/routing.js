@@ -3,6 +3,8 @@ const recipeController = require('../controllers/recipeController')
 const userController = require('../controllers/userController')
 const downloadController = require('../controllers/downloadController')
 const jwtMiddleWare = require('../middleware/jwtMiddleware')
+const saveController = require('../controllers/saveController')
+const feedbackController = require('../controllers/feedbackController')
 
 const router = new express.Router()
 
@@ -12,6 +14,9 @@ router.get('/recipes',recipeController.getAllRecipesController)
 router.post('/register',userController.registerController)
 // login
 router.post('/login',userController.loginController)
+// add feedback
+router.post('/feedback',feedbackController.addFeedbackController)
+
 // -----------------------Authorized user------------------------
 // view recipe
 router.get('/recipes/:id',jwtMiddleWare,recipeController.viewRecipesController)
@@ -19,6 +24,13 @@ router.get('/recipes/:id',jwtMiddleWare,recipeController.viewRecipesController)
 router.get('/related-recipes',jwtMiddleWare,recipeController.relatedRecipesController)
 // addtodownload
 router.post('/downloads/:id',jwtMiddleWare,downloadController.addToDownloadController)
+// add to save
+router.post('/recipes/:id/save',jwtMiddleWare,saveController.addToSaveRecipeController)
+// get user save recipe
+router.get('/recipe-collection',jwtMiddleWare,saveController.getUserSaveRecipeController)
+// get remove user save recipe
+router.delete('/recipe-collection/:id',jwtMiddleWare,saveController.removeUserRecipeItemController)
+
 
 
 

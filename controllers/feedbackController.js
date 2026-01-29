@@ -23,3 +23,26 @@ exports.addFeedbackController = async (req,res)=>{
     }
     
 }
+
+// get approve feedback
+
+exports.getApproveFeedbackController = async (req,res)=>{
+    console.log("inside getApproveFeedbackController");
+  
+    try {
+
+        // add to model
+        const approveFeedbacks = await feedbacks.find({
+         status:{$eq:"approve"}
+        })
+        res.status(200).json(approveFeedbacks)
+      
+        
+    }catch(error){
+        console.log(error);
+        res.status(500).json(error)
+        
+        
+    }
+    
+}

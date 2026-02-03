@@ -43,7 +43,12 @@ router.put('/user-edit',jwtMiddleWare,multerMiddleware.single('picture'),userCon
 router.get('/user-list',adminMiddleware,userController.getAllUsersController)
 // get all download list
 router.get('/downloads',adminMiddleware,downloadController.getDownloadListController)
-
+//get  all  feedbacks list
+router.get('/feedbacks',adminMiddleware,feedbackController.getAllFeedbackController)
+//update  feedbacks 
+router.put('/feedbacks/:id',adminMiddleware,feedbackController.updateFeedbackStatusController)
+// add recipe
+router.post('/recipes',adminMiddleware,recipeController.addRecipeController)
 
 
 

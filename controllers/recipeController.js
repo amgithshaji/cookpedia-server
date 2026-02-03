@@ -43,3 +43,29 @@ exports.relatedRecipesController = async (req,res)=>{
         
     }
 }
+
+// add recipe
+exports.addRecipeController = async (req,res)=>{
+    console.log("inside addRecipeController");
+    const{name,ingredients,instructions,prepTimeMinutes,cookTimeMinutes,servings,difficulty,cuisine,caloriesPerServing,image,mealType}=req.body
+
+    try {
+        const existingRecipe = await recipes.findOne({name})
+        if (existingRecipe) {
+            res.status(409).json("recipe already in collection")
+            
+        } else {
+            const newRecipe = await recipes.create({name,ingredients,instructions,prepTimeMinutes,cookTimeMinutes,servings,difficulty,cuisine,caloriesPerServing,image,mealType
+            
+            })
+            res.status(200).json(newRecipe)
+            
+        }
+       
+    } catch(error){
+        console.log(error);
+        res.status(500).json(error)
+        
+        
+    }
+}
